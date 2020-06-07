@@ -9,6 +9,14 @@ import News from './components/pages/News.vue'
 import Store from './components/pages/Store.vue'
 import Contact from './components/pages/Contact.vue'
 
+import PrismicVue from 'prismic-vue'
+import linkResolver from './link-resolver'
+
+Vue.use(PrismicVue, {
+  endpoint: window.prismic.endpoint,
+  linkResolver
+})
+
 Vue.use(VueRouter)
 
 const router = new VueRouter ({

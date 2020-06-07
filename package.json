@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "prismic-dom": "^2.2.3",
+    "prismic-javascript": "^3.0.0",
+    "prismic-vue": "^2.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
   },

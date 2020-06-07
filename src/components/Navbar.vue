@@ -1,6 +1,10 @@
 <template>
-    <nav>
-        <div class="logo"></div>
+    <nav >
+        <div class="logo">
+            <router-link to="/">
+                <img src="./../assets/logo.png" alt="Waffle logo">
+            </router-link>
+        </div>
         <div class="links">
             <router-link to="/">Home</router-link>
             <router-link to="/biography">Biography</router-link>
@@ -27,20 +31,39 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4);
+        -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Safari */
+        -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Firefox */
+        z-index: +1;
     }
     nav .logo {
-        height: 20%;
+        width: 100%;
+        height: 15%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        min-height: fit-content;
+    }
+    .logo img {
+        margin-top: 45px;
+        width: 55px;
     }
     nav .links {
-        height: 60%;
+        width: 100%;
+        height: 70%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+        min-height: fit-content;
     }
-    nav .links * {
+    nav .links a {
         color: #000000;
-        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        font-size: 1em;
         text-decoration: none;
         transform: rotate(-90deg);
         -webkit-transform: rotate(-90deg); /* Safari */
@@ -48,13 +71,20 @@
         -ms-transform: rotate(-90deg); /* IE */
         -o-transform: rotate(-90deg); /* Opera */
         transition: 0.3s;
+        text-transform: uppercase;
     }
     nav .links *:hover {
-        font-weight: bold;
+        transform: rotate(0deg);
+        width: 100px;
+        -webkit-transform: rotate(0deg); /* Safari */
+        -moz-transform: rotate(0deg); /* Firefox */
+        -ms-transform: rotate(0deg); /* IE */
+        -o-transform: rotate(0deg); /* Opera */
         cursor: pointer;
         transition: 0.3s;
+        text-decoration: underline;
     }
     nav .navbar-footer {
-        height: 20%;
+        height: 15%;
     }
 </style>
