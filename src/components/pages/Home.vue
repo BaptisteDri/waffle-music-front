@@ -3,7 +3,7 @@
         <main>
             <img src="../../assets/waffle_logo.png" alt="White waffle logo">
             <div class="links">
-                <all-links></all-links>
+                <all-links />
             </div>
         </main>
         <aside>
