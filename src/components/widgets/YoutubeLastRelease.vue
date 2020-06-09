@@ -1,15 +1,15 @@
 <template>
-    <div id="youtube" @click="goToYoutube()">
+    <div id="youtube" @click="goToYoutube()" ref="youtube_release">
         <div class="header"></div>
-        <div class="container">
+        <div ref="youtube_content" class="container">
             <div class="img-container">
                 <prismic-image :field="fields.img" />
             </div>
             <div class="infos">
-                <span class="title">
+                <span class="title" ref="youtube_title">
                     <prismic-rich-text :field="fields.title" />
                 </span>
-                <span class="authors">
+                <span class="authors" ref="youtube_p">
                     <prismic-rich-text :field="fields.authors" />
                 </span>
             </div>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+    import { TimelineLite, Power4 } from 'gsap'
+
     export default {
         name: 'YoutubeLastRelease',
         data() {
@@ -55,9 +57,45 @@
                         this.fields.link = document.data.latest_yt_link,
                         this.fields.img = document.data.latest_yt_img1
                     })
+                    .then(() => {
+                        const { 
+                            youtube_release,
+                            youtube_content,
+                            youtube_title,
+                            youtube_p
+                        } = this.$refs
+                        const timeline = new TimelineLite()
+
+                        timeline.to(youtube_release, 0, {
+                            x: +500
+                        })
+                        timeline.to(youtube_release, 0.8, {
+                            x: 0,
+                            ease: Power4.easeOut
+                        }, '+=0.1')
+                        timeline.to(youtube_content, 0.3, {
+                            opacity: 1
+                        }, '0.15')
+                        timeline.to(youtube_title, 0, {
+                            y: +50
+                        }, '0')
+                        timeline.to(youtube_title, 0.5, {
+                            y: 0,
+                            ease: Power4.easeInOut
+                        }, '0.31')
+                        timeline.to(youtube_p, 0, {
+                            y: +50
+                        }, '0')
+                        timeline.to(youtube_p, 0.5, {
+                            y: 0,
+                            ease: Power4.easeInOut
+                        }, '0.38')
+                    })
             },
             goToYoutube() {
-                window.open(this.fields.link.url, '_blank')
+                if(this.fields.link.url) {
+                    window.open(this.fields.link.url, '_blank')
+                }
             }
         },
         created() {
@@ -82,6 +120,7 @@
     }
     .container {
         transition: 0.3s;
+        opacity: 0;
     }
     .img-container {
         width: 250px;
@@ -106,14 +145,13 @@
         display: block;
         color: #FFFFFF;
         font-size: 1.6em;
-        font-weight: 700;
     }
     .authors {
         display: block;
         color: rgba(255, 255, 255, 0.3);
     }
-    #youtube .header,
-    #youtube .footer {
+    .header,
+    .footer {
         height: 30px;
         padding: 0 10px;
         display: flex;
@@ -122,5 +160,78 @@
     .footer svg {
         height: 20px;
         color: #FFFFFF;
+    }
+
+    @media only screen and (max-width: 1135px) {
+        div#youtube {
+            width: 400px;
+        }
+    }
+    @media only screen and (max-width: 960px) {
+        div#youtube {
+            width: 50%;
+            height: 150px;
+            flex-direction: row;
+            position: relative;
+        }
+        div#youtube:hover .container {
+            transform: none;
+        }
+        .header {
+            display: none;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .img-container {
+            border-radius: 0;
+            width: 150px;
+            height: 150px;
+            box-shadow: none;
+        }
+        .infos {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            width: calc(100% - 170px);
+        }
+        .title {
+            font-size: 1.3em;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+    @media only screen and (max-width: 650px) {
+        div#youtube {
+            height: 100px;
+        }
+        .img-container {
+            height: 100px;
+            width: 100px;   
+        }
+        .infos {
+            width: calc(100% - 120px);
+        }
+        .title {
+            font-size: 0.8em;
+        }
+        .authors {
+            font-size: 0.8em;
+        }
+        .footer {
+            height: fit-content;
+            padding-bottom: 10px;
+        }
+        .footer svg {
+            height: 10px;
+            color: #FFFFFF;
+        }
     }
 </style>

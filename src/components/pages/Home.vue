@@ -17,7 +17,7 @@
     import SpotifyLastRelease from '../widgets/SpotifyLastRelease'
     import YoutubeLastRelease from '../widgets/YoutubeLastRelease'
     import AllLinks from '../widgets/AllLinks'
-
+    
     export default {
         name: 'Home',
         components: {
@@ -34,23 +34,56 @@
         flex-direction: row;
         justify-content: space-between;
         height: 100%;
-        background-color: #67447D;
     }
     main {
-        background-image: url('/bg_couple_cropped-min.png');
-        background-size: cover;
-        background-repeat: no-repeat;
         width: calc(100% - 500px);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 40px;
     }
     div.links {
         width: fit-content;
-        margin: 0 auto 2% auto;
+        margin: 0 auto 50px auto;
     }
     img {
+        margin: 40px 0 0 40px;
+        display: block;
         width: 300px;
+    }
+
+    @media only screen and (max-width: 1135px) {
+        main {
+            width: calc(100% - 400px);
+        }
+    }
+    @media only screen and (max-width: 960px) {
+        main {
+            width: 100%;
+            height: calc(100% - 150px);
+        }
+        aside {
+            display: flex;
+            flex-direction: row;
+            height: 150px;
+        }
+        div#home-page {
+            flex-direction: column;
+            height: 100vh;
+        }
+    }
+    @media only screen and (max-width: 650px) {
+        div#home-page {
+            height: 100%;
+        }
+        main {
+            height: calc(100% - 100px);
+            align-items: center;
+        }
+        img {
+            margin-left: 0;
+        }
+        aside {
+            height: 100px;
+        }
     }
 </style>

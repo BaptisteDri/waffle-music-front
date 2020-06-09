@@ -34,11 +34,29 @@
         flex-direction: row;
         flex-wrap: nowrap;
         overflow: hidden;
+        background-image: url('/bg_couple_cropped-min.png');
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     #content {
         height: 100vh;
         width: calc(100vw - 100px); /* navbar width */
         overflow: hidden;
+    }
+
+    @media only screen and (max-width: 650px) {
+        html, body {
+            height: 100%;
+            background-color: #5F2B7E;
+        }
+        #app {
+            flex-direction: column;
+            height: 100%;
+        }
+        #content {
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

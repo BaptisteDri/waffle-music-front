@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "gsap": "^3.3.1",
     "prismic-dom": "^2.2.3",
     "prismic-javascript": "^3.0.0",
     "prismic-vue": "^2.0.1",

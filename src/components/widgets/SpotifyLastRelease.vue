@@ -1,15 +1,15 @@
 <template>
-    <div id="spotify" @click="goToSpotify()">
+    <div id="spotify" @click="goToSpotify()" ref="spotify_release">
         <div class="header"></div>
-        <div class="container">
+        <div ref="spotify_content" class="container">
             <div class="img-container">
                 <prismic-image :field="fields.img" />
             </div>
             <div class="infos">
-                <span class="title">
+                <span class="title" ref="spotify_title">
                     <prismic-rich-text :field="fields.title" />
                 </span>
-                <span class="authors">
+                <span class="authors" ref="spotify_p">
                     <prismic-rich-text :field="fields.authors" />
                 </span>
             </div>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+    import { TimelineLite, Power4 } from 'gsap'
+
     export default {
         name: 'SpotifyLastRelease',
         data() {
@@ -55,9 +57,45 @@
                         this.fields.link = document.data.latest_song_link,
                         this.fields.img = document.data.latest_song_img1
                     })
+                    .then(() => {
+                        const { 
+                            spotify_release,
+                            spotify_content,
+                            spotify_title,
+                            spotify_p
+                        } = this.$refs
+                        const timeline = new TimelineLite()
+
+                        timeline.to(spotify_release, 0, {
+                            x: +500
+                        })
+                        timeline.to(spotify_release, 0.8, {
+                            x: 0,
+                            ease: Power4.easeOut
+                        })
+                        timeline.to(spotify_content, 0.3, {
+                            opacity: 1
+                        }, '0.15')
+                        timeline.to(spotify_title, 0, {
+                            y: +50
+                        }, '0')
+                        timeline.to(spotify_title, 0.5, {
+                            y: 0,
+                            ease: Power4.easeInOut
+                        }, '0.3')
+                        timeline.to(spotify_p, 0, {
+                            y: +50
+                        }, '0')
+                        timeline.to(spotify_p, 0.5, {
+                            y: 0,
+                            ease: Power4.easeInOut
+                        }, '0.37')
+                    })
             },
             goToSpotify() {
-                window.open(this.fields.link.url, '_blank')
+                if(this.fields.link.url) {
+                    window.open(this.fields.link.url, '_blank')
+                }
             }
         },
         created() {
@@ -82,6 +120,7 @@
     }
     .container {
         transition: 0.3s;
+        opacity: 0;
     }
     .img-container {
         width: 250px;
@@ -112,8 +151,8 @@
         display: block;
         color: rgba(255, 255, 255, 0.3);
     }
-    #spotify .header,
-    #spotify .footer {
+    .header,
+    .footer {
         height: 30px;
         padding: 0 10px;
         display: flex;
@@ -122,5 +161,77 @@
     .footer svg {
         height: 20px;
         color: #FFFFFF;
+    }
+    @media only screen and (max-width: 1135px) {
+        div#spotify {
+            width: 400px;
+        }
+    }
+    @media only screen and (max-width: 960px) {
+        div#spotify {
+            width: 50%;
+            height: 150px;
+            flex-direction: row;
+            position: relative;
+        }
+        div#spotify:hover .container {
+            transform: none;
+        }
+        .header {
+            display: none;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .img-container {
+            border-radius: 0;
+            width: 150px;
+            height: 150px;
+            box-shadow: none;
+        }
+        .infos {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            width: calc(100% - 170px);
+        }
+        .title {
+            font-size: 1.3em;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+    @media only screen and (max-width: 650px) {
+        div#spotify {
+            height: 100px;
+        }
+        .img-container {
+            height: 100px;
+            width: 100px;   
+        }
+        .infos {
+            width: calc(100% - 120px);
+        }
+        .title {
+            font-size: 0.8em;
+        }
+        .authors {
+            font-size: 0.8em;
+        }
+        .footer {
+            height: fit-content;
+            padding-bottom: 10px;
+        }
+        .footer svg {
+            height: 10px;
+            color: #FFFFFF;
+        }
     }
 </style>
