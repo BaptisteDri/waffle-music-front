@@ -10,10 +10,9 @@
             <div class="content">
                 <h1>News</h1>
                 <div class="news-container">
-                    <news-item i="1" />
-                    <news-item i="2" />
-                    <news-item i="3" />
-                    <news-item i="4" />
+                    <div v-bind:key="i" v-for="(news_item, i) in fields.news">
+                        <news-item :i="i" :news_item="news_item" />
+                    </div>
                 </div>
             </div>
         </main>
@@ -37,6 +36,23 @@
             YoutubeLastRelease,
             AllLinks,
             NewsItem
+        },
+        data() {
+            return {
+                fields: {
+                    news: []
+                }
+            }
+        },
+        methods: {
+            getContent() {
+                this.$prismic.client.query('').then((response) => {
+                    this.fields.news = response.results[0].data.news_list
+                })
+            }
+        },
+        created() {
+            this.getContent()
         }
     }
 </script>

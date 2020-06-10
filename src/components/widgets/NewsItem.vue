@@ -1,8 +1,12 @@
 <template>
     <div ref="news_item" class="news-item">
-        <a href="">
-            <div class="img"></div>
-            <div class="title">Rubayne Teams Up With Stella And Waffle For Uplifting Cut “Keep It Up”</div>
+        <a :href="news_item.news_link.url" target="_blank" rel="noopener noreferrer">
+            <div class="img">
+                <prismic-image :field="news_item.news_image" />
+            </div>
+            <div class="title">
+                <prismic-rich-text :field="news_item.news_title" />
+            </div>
         </a>
     </div>
 </template>
@@ -13,9 +17,11 @@
     export default {
         name: 'NewsItem',
         props: {
-            i: Number
+            i: Number,
+            news_item: []
         },
         mounted() {
+            console.log('######', this.$props.news_item)
             const { news_item } = this.$refs
 
             const timeline = new TimelineLite()
@@ -23,7 +29,7 @@
             const heightTime = this.i * 0.1
             const boxShadowTime = this.i * 0.2
 
-            timeline.to(news_item, 0.75, {
+            timeline.to(news_item, 0.5, {
                 height: 400,
                 ease: Power4.ease
             }, heightTime)
@@ -59,16 +65,22 @@
         font-size: 1.2em;
     }
     .news-item .img {
-        background: red;
         width: 200px;
         height: 200px;
         overflow: hidden;
         border-radius: 20px;
         margin-bottom: 20px;
     }
+    .news-item .img img {
+        width: 100%;
+        height: 100%;
+    }
     .news-item .title {
         max-width: calc(100% - 30px);
         margin: 0 auto;
         text-align: center;
+    }
+    .title * , .news-item .title strong{
+        font-weight: 500 !important;
     }
 </style>
