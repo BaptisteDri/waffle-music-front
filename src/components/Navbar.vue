@@ -16,18 +16,28 @@
             <div class="navbar-footer"></div>
         </nav>
         <nav class="mobile">
-            <div class="mb-logo">
-                <router-link to="/">
-                    <img src="./../assets/logo.png" alt="Waffle logo">
-                </router-link>
-            </div>
+            <router-link to="/biography">
+                <span>Biography</span>
+            </router-link>
+            <router-link to="/news">
+                <span>News</span>
+            </router-link>
+            <router-link to="/">
+                <span>Home</span>
+            </router-link>
+            <router-link to="/store">
+                <span>Store</span>
+            </router-link>
+            <router-link to="/contact">
+                <span>Contact</span>
+            </router-link>
         </nav>
     </div>
 </template>
 
 <script>
     import { TimelineLite, Power4 } from 'gsap'
-    
+
     export default {
         name: 'Navbar',
         mounted() {
@@ -54,9 +64,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4);
-        -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Safari */
-        -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Firefox */
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Safari */
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Firefox */
         z-index: +1;
     }
     nav.desktop .logo {
@@ -112,16 +122,20 @@
     }
 
     nav.mobile {
+        position: fixed;
+        bottom: 0;
         height: 60px;
+        width: 100%;
         background: white;
         display: none;
-        box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4);
-        -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Safari */
-        -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Firefox */
-        position: relative;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Safari */
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Firefox */
+        align-items: center;
+        justify-content: space-evenly;
         z-index: 9999;
     }
-    nav.mobile .mb-logo {
+    nav.mobile .mb-logo a {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -136,7 +150,7 @@
             display: none;
         }
         nav.mobile {
-            display: block;
+            display: flex;
         }
     }
 </style>

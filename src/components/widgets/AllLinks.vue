@@ -200,4 +200,10 @@
     svg {
         width: fit-content;
     }
+    @media only screen and (max-width: 650px) {
+        section a {
+            height: 20px;
+            width: 20px;
+        }
+    }
 </style>

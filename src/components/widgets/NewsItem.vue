@@ -21,7 +21,6 @@
             news_item: []
         },
         mounted() {
-            console.log('######', this.$props.news_item)
             const { news_item } = this.$refs
 
             const timeline = new TimelineLite()

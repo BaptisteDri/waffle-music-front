@@ -47,7 +47,7 @@
         methods: {
             getContent() {
                 this.$prismic.client.query('').then((response) => {
-                    this.fields.news = response.results[0].data.news_list
+                    this.fields.news = response.results[0].data.news_list.reverse()
                 })
             }
         },
@@ -74,7 +74,7 @@
         width: fit-content;
         margin-left: 40px;
     }
-    img {
+    .header img {
         margin-left: 40px;
         display: block;
         width: 300px;
@@ -100,17 +100,34 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
+
     }
 
     @media only screen and (max-width: 1135px) {
         main {
             width: calc(100% - 400px);
         }
+        main .header {
+            flex-direction: column;
+            padding: 0 10px;
+        }
+        div.links {
+            margin: 20px 0 0 0;
+        }
+        .header img {
+            margin: 20px 0 0 0;
+            max-width: calc(100% - 20px);
+            width: 250px;
+        }
+        .content h1 {
+            text-align: center;
+        }
     }
     @media only screen and (max-width: 960px) {
         main {
             width: 100%;
-            height: calc(100% - 150px);
+            min-height: calc(100% - 150px);
+            display: block;
         }
         aside {
             display: flex;
@@ -127,10 +144,14 @@
             height: 100%;
         }
         main {
-            height: calc(100% - 100px);
-            align-items: center;
+            height: calc(100% - 60px);
+            display: block;
+            padding-bottom: 160px;
         }
         aside {
+            position: fixed;
+            bottom: 60px;
+            width: 100%;
             height: 100px;
         }
     }   

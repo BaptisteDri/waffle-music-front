@@ -128,9 +128,9 @@
         overflow: hidden;
         border-radius: 20px;
         margin: 0 auto;
-        box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4);
-        -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Safari */
-        -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.4); /* Firefox */
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Safari */
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Firefox */
     }
     .img-container img {
         width: 100%;
@@ -145,6 +145,7 @@
         display: block;
         color: #FFFFFF;
         font-size: 1.6em;
+        font-weight: 700;
     }
     .authors {
         display: block;
@@ -210,24 +211,39 @@
     }
     @media only screen and (max-width: 650px) {
         div#youtube {
-            height: 100px;
+            height: 70px;
+            width: calc(50% - 30px);
+            margin: 15px;
+            border-radius: 50px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Safari */
+            -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Firefox */
         }
         .img-container {
-            height: 100px;
-            width: 100px;   
+            height: 70px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            margin: 0 0 0 10px;
+        }
+        .img-container img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50px;
         }
         .infos {
-            width: calc(100% - 120px);
+            width: calc(100% - 130px);
         }
         .title {
-            font-size: 0.8em;
+            font-size: 0.7em;
         }
         .authors {
-            font-size: 0.8em;
+            display: none;
         }
         .footer {
             height: fit-content;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            padding-right: 20px;
         }
         .footer svg {
             height: 10px;

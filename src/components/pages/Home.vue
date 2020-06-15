@@ -76,13 +76,16 @@
             height: 100%;
         }
         main {
-            height: calc(100% - 100px);
+            min-height: calc(100% - 160px);
             align-items: center;
         }
         img {
             margin-left: 0;
         }
         aside {
+            position: fixed;
+            bottom: 60px;
+            width: 100%;
             height: 100px;
         }
     }

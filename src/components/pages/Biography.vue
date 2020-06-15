@@ -196,6 +196,8 @@
     }
     .content p a {
         color: #5e5d5d;
+        font-weight: bold;
+        font-size: 0.9em;
     }
     .content span {
         font-weight: bold;
@@ -235,8 +237,9 @@
     }
     @media only screen and (max-width: 650px) {
         main {
-            align-items: center;
+            display: block;
             width: 100%;
+            padding-bottom: 60px;
         }
         main .content {
             max-width: calc(100% - 40px);
