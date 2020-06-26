@@ -12,6 +12,10 @@ import Contact from './components/pages/Contact.vue'
 import PrismicVue from 'prismic-vue'
 import linkResolver from './link-resolver'
 
+import { gsap, CSSPlugin } from 'gsap'
+gsap.registerPlugin(CSSPlugin)
+
+
 Vue.use(PrismicVue, {
   endpoint: window.prismic.endpoint,
   linkResolver
